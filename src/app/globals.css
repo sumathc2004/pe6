@@ -1,0 +1,191 @@
+@import 'tailwindcss';
+/* The class list, generated from src/ — see scripts/tailwind-classes.mjs. */
+@import './tailwind-sources.css';
+
+/* ───────────────────────────── Design tokens ───────────────────────────── */
+@theme {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: var(--font-sora), var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* PE6 black — the logo's lettering. Buttons, headers and dark panels use brand-600 and up. */
+  --color-brand-50: #f6f5f3;
+  --color-brand-100: #ebe9e6;
+  --color-brand-200: #d5d2cd;
+  --color-brand-300: #aeaaa4;
+  --color-brand-400: #7b7771;
+  --color-brand-500: #4a4846;
+  --color-brand-600: #1f1e1c;
+  --color-brand-700: #111111;
+  --color-brand-800: #0b0b0b;
+  --color-brand-900: #050505;
+  --color-brand-950: #020202;
+
+  /* Near-black ink — headings and the dark panels. */
+  --color-ink-950: #080808;
+  --color-ink-900: #121211;
+  --color-ink-800: #1f1e1c;
+  --color-ink-700: #33312e;
+  --color-ink-600: #4d4a45;
+
+  /* PE6 gold — the logo's ribbon (#C08A2E is gold-500, #F8D878 its highlight); also attention and pending. */
+  --color-gold-50: #fdf8ea;
+  --color-gold-100: #f9edc9;
+  --color-gold-200: #f2dc96;
+  --color-gold-300: #e9c565;
+  --color-gold-400: #d9a73f;
+  --color-gold-500: #c08a2e;
+  --color-gold-600: #9a6c1c;
+  --color-gold-700: #7a5416;
+  --color-gold-800: #5c3f13;
+
+  /* Jade — money in, success. */
+  --color-jade-50: #ecfdf5;
+  --color-jade-100: #d1fae5;
+  --color-jade-500: #10b981;
+  --color-jade-600: #059669;
+  --color-jade-700: #047857;
+
+  --color-canvas: #f2f1ed;
+
+  /* Squarer corners than the old portal: everything that says rounded-xl/2xl/3xl follows these. */
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.625rem;
+  --radius-3xl: 0.875rem;
+
+  --shadow-card: 0 1px 0 rgb(10 10 10 / 0.04);
+  --shadow-lift: 0 12px 32px -14px rgb(17 17 17 / 0.35);
+  --shadow-pop: 0 24px 64px -16px rgb(5 5 5 / 0.35);
+
+  --animate-fade-in: fade-in 0.25s ease-out both;
+  --animate-rise: rise 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-drift: drift 14s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-ping-slow: ping-slow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-refresh-spin: refresh-spin 0.7s linear infinite;
+  --animate-shake: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  --animate-logo-sheen: logo-sheen 7s ease-in-out 1.2s infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(8px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(4%, -6%, 0) scale(1.08); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes ping-slow {
+    75%, 100% { transform: scale(2.2); opacity: 0; }
+  }
+  @keyframes refresh-spin {
+    to { transform: rotate(360deg); }
+  }
+  /* A light sweeps across in the first fifth, then the logo rests until the next pass. */
+  @keyframes logo-sheen {
+    0% { background-position: 160% 0; }
+    18%, 100% { background-position: -60% 0; }
+  }
+  @keyframes shake {
+    20%, 60% { transform: translateX(-2px); }
+    40%, 80% { transform: translateX(2px); }
+  }
+}
+
+/* ───────────────────────────── Base ───────────────────────────── */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-canvas font-sans text-ink-900 antialiased;
+  }
+  /* Headings everywhere speak in the display face; the body stays in Geist. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    @apply bg-brand-200 text-ink-950;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-gold-500;
+  }
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/* ───────────────────────────── Utilities ───────────────────────────── */
+/* The chevron on native selects. */
+@utility select-chevron {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2364748b'%3E%3Cpath d='M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z'/%3E%3C/svg%3E");
+  background-size: 18px;
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+}
+
+/* Money and counts: the display face's tabular figures, so columns of amounts line up. */
+/* The sweep of light on the logo (masked to the artwork by the component). */
+@utility logo-sheen {
+  background-image: linear-gradient(110deg, transparent 38%, rgb(255 255 255 / 0.7) 50%, transparent 62%);
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  background-position: 160% 0;
+  animation: var(--animate-logo-sheen);
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@utility tabular {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(176 173 170 / 0.6) transparent;
+}
+
+/* The portal canvas is flat now (the old dotted grid is gone); the class stays so pages need no change. */
+@utility canvas-grid {
+  background-image: none;
+}
+
+@utility skeleton {
+  background: linear-gradient(90deg, rgb(232 231 228) 25%, rgb(243 242 240) 50%, rgb(232 231 228) 75%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* The brand's dark surface: near-black with a gold ribbon sweeping across, echoing the logo. */
+@utility bg-aurora {
+  background:
+    linear-gradient(115deg, transparent 58%, rgb(192 138 46 / 0.55) 58.4%, rgb(248 216 120 / 0.75) 62%, rgb(192 138 46 / 0.35) 65%, transparent 65.4%),
+    linear-gradient(115deg, transparent 70%, rgb(192 138 46 / 0.25) 70.3%, transparent 74%),
+    linear-gradient(135deg, #050505 0%, #12110f 60%, #1f1c17 100%);
+}

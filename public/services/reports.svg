@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Reports">
+  <defs>
+    <linearGradient id="gold" x1="14" y1="10" x2="146" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8d878"/>
+      <stop offset="0.38" stop-color="#e3b758"/>
+      <stop offset="0.7" stop-color="#c89838"/>
+      <stop offset="1" stop-color="#a87828"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2722"/>
+      <stop offset="1" stop-color="#070707"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <!-- the gold tile -->
+  <rect x="12" y="12" width="136" height="136" rx="34" fill="url(#gold)"/>
+  <rect x="12" y="12" width="136" height="136" rx="34" fill="url(#sheen)"/>
+  <rect x="12.75" y="12.75" width="134.5" height="134.5" rx="33.25" fill="none" stroke="#fff3c4" stroke-opacity="0.55" stroke-width="1.5"/>
+  <!-- three black bars -->
+  <g filter="url(#soft)">
+    <rect x="36" y="88" width="22" height="38" rx="7" fill="url(#bar)"/>
+    <rect x="69" y="64" width="22" height="62" rx="7" fill="url(#bar)"/>
+    <rect x="102" y="40" width="22" height="86" rx="7" fill="url(#bar)"/>
+  </g>
+  <!-- the trend -->
+  <polyline points="36,76 64,54 90,62 124,28" fill="none" stroke="#fffaf0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="124" cy="28" r="6.5" fill="#fffaf0"/>
+  <circle cx="124" cy="28" r="2.8" fill="#a87828"/>
+</svg>

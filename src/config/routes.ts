@@ -1,0 +1,21 @@
+/** Every page path in one place. */
+export const routes = {
+  home: '/',
+  login: '/login',
+  paymentStatus: '/payment-status',
+  gateway: '/collect/gateway',
+  imps: '/payout/imps',
+  cardBills: '/payout/card-bills',
+  reports: '/reports',
+  report: (key: string) => `/reports/${key}`,
+  profile: '/profile',
+  myRetailers: '/my-retailers',
+  admin: '/admin',
+  customers: '/admin/customers',
+  newCustomer: '/admin/customers/new',
+  customer: (id: number) => `/admin/customers/${id}`,
+  editCustomer: (id: number) => `/admin/customers/${id}/edit`,
+  mapping: (id: number) => `/admin/customers/${id}/mapping`,
+  pgSettings: '/admin/pg-settings',
+  announcements: '/admin/announcements',
+} as const;
